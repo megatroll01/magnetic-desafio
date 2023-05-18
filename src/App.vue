@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     logout() {
-      this.drawer = !this.drawer
+      this.drawer = false;
       this.$router.push('/');
     },
   },

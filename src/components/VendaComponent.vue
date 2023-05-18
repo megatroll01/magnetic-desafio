@@ -5,17 +5,17 @@
     <v-btn @click="adicionarProduto" color="primary">Adicionar Produto</v-btn>
     
     <v-list v-if="listaProdutos && listaProdutos.length">
-      <v-list-item v-for="(produto, index) in listaProdutos" :key="index">
-        <v-list-item-content>
-          <v-list-item-title>{{ produto.produto }}</v-list-item-title>
-          <v-list-item-subtitle>Quantidade: {{ produto.quantidade }}</v-list-item-subtitle>
+    <v-list-item v-for="(produto, index) in listaProdutos" :key="index">
+        <v-list-item-content class="align-center">
+        <v-list-item-title>{{ produto.produto }}</v-list-item-title>
+        <v-list-item-subtitle>Quantidade: {{ produto.quantidade }}</v-list-item-subtitle>
         </v-list-item-content>
-      </v-list-item>
-      <v-list-item>
+    </v-list-item>
+    <v-list-item>
         <v-btn icon small @click="removerProduto(listaProdutos.length - 1)">
-          <v-icon>mdi-delete</v-icon>
+        <v-icon>mdi-delete</v-icon>
         </v-btn>
-      </v-list-item>
+    </v-list-item>
     </v-list>
     <br>
     <br>
