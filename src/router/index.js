@@ -7,16 +7,27 @@ import Venda from '../components/VendaComponent.vue'
 
 const routes = [
   { path: '/', name: 'Login', component: Login },
-  { path: '/dashboard', name: 'Dashboard', component: Dashboard },
-  { path: '/cadastro-funcionario', name: 'CadastroFuncionario', component: CadastroFuncionario },
-  { path: '/cadastro-produtos', name: 'CadastroProduto', component: CadastroProdutos },
-  { path: '/venda', name: 'venda', component: Venda },
+  { path: '/dashboard', name: 'Dashboard', component: Dashboard, meta: { requiresAuth: true } },
+  { path: '/cadastro-funcionario', name: 'CadastroFuncionario', component: CadastroFuncionario, meta: { requiresAuth: true } },
+  { path: '/cadastro-produtos', name: 'CadastroProduto', component: CadastroProdutos, meta: { requiresAuth: true } },
+  { path: '/venda', name: 'venda', component: Venda, meta: { requiresAuth: true } },
   { path: '/:pathMatch(.*)*', redirect: '/' }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+function usuarioAutenticado() {
+  return localStorage.getItem('token') !== null;
+}
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && !usuarioAutenticado()) {
+    next({ name: 'Login' });
+  } else {
+    next(); 
+  }
 })
 
 export default router

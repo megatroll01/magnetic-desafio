@@ -34,6 +34,7 @@ export default {
     login() {
       if (this.username === 'admin' && this.password === 'admin') {
         this.erro = false;
+         localStorage.setItem('token', 'seu_token_aqui');
         this.$router.push('/dashboard');
       } else {
         this.erro = true;
